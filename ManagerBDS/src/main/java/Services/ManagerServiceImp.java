@@ -2,10 +2,8 @@ package Services;
 
 import Entities.Manager;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
+import javax.ejb.Stateless;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,8 +13,14 @@ import java.util.logging.Logger;
 public class ManagerServiceImp implements ManagerService {
     private Response response = new Response();
 
+    private EntityManagerFactory factory;
+
+    public ManagerServiceImp() {
+        factory = Persistence.createEntityManagerFactory("default");
+    }
+
     @Override
-    public void save(Manager object, EntityManagerFactory factory) {
+    public void save(Manager object) {
         EntityManager manager = factory.createEntityManager();
         try {
             manager.getTransaction().begin();
@@ -31,7 +35,7 @@ public class ManagerServiceImp implements ManagerService {
     }
 
     @Override
-    public List<Manager> getAll(EntityManagerFactory factory) {
+    public List<Manager> getAll() {
         EntityManager manager = factory.createEntityManager();
         List<Manager> managers = new ArrayList<>();
         try {
@@ -46,7 +50,7 @@ public class ManagerServiceImp implements ManagerService {
     }
 
     @Override
-    public void handleAdd(EntityManagerFactory factory) {
+    public void handleAdd() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter username : ");
         String username = sc.nextLine();
@@ -57,12 +61,12 @@ public class ManagerServiceImp implements ManagerService {
         System.out.println("Enter phone number : ");
         String phoneNumber = sc.nextLine();
         Manager manager = new Manager(username, phoneNumber, email, password);
-        this.save(manager, factory);
+        this.save(manager);
         System.out.println(manager.toString());
     }
 
     @Override
-    public Manager getByUsername(String username, EntityManagerFactory factory) {
+    public Manager getByUsername(String username) {
         EntityManager entityManager = factory.createEntityManager();
         List<Manager> managers = new ArrayList<>();
         try {
@@ -78,7 +82,7 @@ public class ManagerServiceImp implements ManagerService {
         return managers.isEmpty() ? null : managers.get(0);
     }
 
-    public Manager handleLogin(String username, String password, EntityManagerFactory factory) {
+    public Manager handleLogin(String username, String password) {
         EntityManager manager = factory.createEntityManager();
 
         Query query = manager.createQuery("SELECT u FROM Manager u where u.username = :username and u.password = :password", Manager.class);
@@ -91,8 +95,8 @@ public class ManagerServiceImp implements ManagerService {
         return managers.get(0);
     }
 
-    public void showAll(EntityManagerFactory factory) {
-        List<Manager> managers = this.getAll(factory);
+    public void showAll() {
+        List<Manager> managers = this.getAll();
         for (Manager manager : managers) {
             System.out.println("\n");
             System.out.println(manager.toString());
@@ -100,11 +104,11 @@ public class ManagerServiceImp implements ManagerService {
 
     }
 
-    public void showInfoByUsername(EntityManagerFactory factory) {
+    public void showInfoByUsername() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name");
         String name = sc.nextLine();
-        Manager manager = this.getByUsername(name, factory);
+        Manager manager = this.getByUsername(name);
         System.out.println(manager.toString());
         System.out.println("\n -------------\n");
     }

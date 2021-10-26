@@ -6,19 +6,22 @@ import Entities.PersistedSale;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.Scanner;
 
 public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
     private Response response = new Response();
     private ManagerService managerService;
+    private EntityManagerFactory factory;
 
     public PersistedSaleServiceImp(ManagerService managerService) {
         this.managerService = managerService;
+        factory = Persistence.createEntityManagerFactory("default");
     }
 
     @Override
-    public void save(PersistedSale object, EntityManagerFactory entityManagerFactory) {
-        EntityManager manager = entityManagerFactory.createEntityManager();
+    public void save(PersistedSale object ) {
+        EntityManager manager = factory.createEntityManager();
         try {
             manager.getTransaction().begin();
             manager.persist(object);
@@ -32,21 +35,21 @@ public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
     }
 
     @Override
-    public void handleAdd(EntityManagerFactory entityManagerFactory) {
+    public void handleAdd() {
         Scanner sc = new Scanner(System.in);
         Persisted persisted = new Persisted();
         persisted.add(sc);
         double area = this.inputArea(sc);
         System.out.println("Enter username : ");
         String username = sc.nextLine();
-        Manager manager = managerService.getByUsername(username, entityManagerFactory);
+        Manager manager = managerService.getByUsername(username);
         if (manager == null) {
             System.out.println("Not found username");
             return;
         }
         PersistedSale sale = new PersistedSale(persisted.getId(),
                 persisted.getAddress(), persisted.getDescription(), persisted.getNumberOfBed(), persisted.getPrice(), manager, area);
-        this.save(sale, entityManagerFactory);
+        this.save(sale);
         System.out.println(sale.toString());
     }
 

@@ -5,6 +5,7 @@ import Entities.Persisted;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,10 +14,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class PersistedServiceImp implements PersistedService {
+    protected EntityManagerFactory factory;
+
+    public PersistedServiceImp() {
+        factory = Persistence.createEntityManagerFactory("default");
+    }
 
     @Override
-    public void showAll(EntityManagerFactory factory) {
-        List<Persisted> persistedSales = this.getAll(factory);
+    public void showAll() {
+        List<Persisted> persistedSales = this.getAll();
         for (Persisted persisted : persistedSales) {
             System.out.println("\n");
             this.showInfo(persisted);
@@ -25,7 +31,7 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public List<Persisted> getAll(EntityManagerFactory factory) {
+    public List<Persisted> getAll() {
         EntityManager manager = factory.createEntityManager();
         List<Persisted> persistedList = new ArrayList<>();
         try {
@@ -39,7 +45,7 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public void getByAllocation(EntityManagerFactory factory) {
+    public void getByAllocation() {
         EntityManager manager = factory.createEntityManager();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name : ");
@@ -71,7 +77,7 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public void showAllAllocation(EntityManagerFactory factory) {
+    public void showAllAllocation() {
         EntityManager manager = factory.createEntityManager();
         List<Persisted> persistedList = new ArrayList<>();
         try {
@@ -88,7 +94,7 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public void getByAddress(EntityManagerFactory factory) {
+    public void getByAddress() {
         EntityManager manager = factory.createEntityManager();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter address : ");

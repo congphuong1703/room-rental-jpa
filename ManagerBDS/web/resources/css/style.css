@@ -1,0 +1,16 @@
+.title {
+    height: 52px;
+    line-height: 52px;
+    font-weight: 500;
+    font-size: 30px;
+    width: 30%;
+    background-color: #3f8cff;
+}
+
+form p{
+    width:300px;
+}
+
+form p input{
+    float:right
+}

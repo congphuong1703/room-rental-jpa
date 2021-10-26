@@ -1,0 +1,46 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+   <ui:define name="yield">
+      <f:view>
+         <div class="title">Real Estate Property E-Business System</div>
+         <div>
+            <p><b>Property Management</b></p>
+            <p>
+               <h:link value="Create a sale propery" outcome="/views/sale/addNewSale.xhtml"/> |
+               <h:link value="List all sale properties" outcome="/views/sale/listSales.xhtml"/> |
+               <h:link value="Search a sale property" outcome="/views/sale/searchSale.xhtml"/> |
+            </p>
+            <p>
+               <h:link value="Create a rental property" outcome="/views/rent/addNewRent.xhtml"/> |
+               <h:link value="List all rental properties" outcome="/views/rent/listRents.xhtml"/> |
+               <h:link value="Search a rental property" outcome="/views/rent/searchRent.xhtml"/> |
+            </p>
+            <p>
+               <h:link value="Create a InRent property" outcome="/views/inrent/addNewInRent.xhtml"/> |
+               <h:link value="List all InRent properties" outcome="/views/inrent/listInRents.xhtml"/> |
+               <h:link value="Search an InRent property" outcome="/views/inrent/searchInRent.xhtml"/> |
+            </p>
+         </div>
+         <div>
+            <p><b>Property Manager</b></p>
+            <p>
+               <h:link value="Create a property manager" outcome="/views/manager/addNewManager.xhtml"/> |
+               <h:link value="List property managers" outcome="/views/manager/listManagers.xhtml"/> |
+               <h:link value="Search for property manager" outcome="/views/manager/searchManager.xhtml"/> |
+            </p>
+         </div>
+         <div>
+            <p><b>Allocation Management</b></p>
+            <p>
+               <h:link value="Create an allocation" outcome="/views/allocation/addNewAllocation.xhtml"/> |
+               <h:link value="List all allocations" outcome="/views/allocation/listAllocations.xhtml"/> |
+               <h:link value="Search an allocations" outcome="/views/allocation/searchAllocation.xhtml"/> |
+            </p>
+         </div>
+      </f:view>
+   </ui:define>
+</ui:composition>
+</html>

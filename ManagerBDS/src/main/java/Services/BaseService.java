@@ -4,8 +4,8 @@ import javax.persistence.EntityManagerFactory;
 
 public interface BaseService<T> {
 
-    void save(T object, EntityManagerFactory factory);
+    void save(T object);
 
-    void handleAdd(EntityManagerFactory entityManagerFactory);
+    void handleAdd();
 
 }
