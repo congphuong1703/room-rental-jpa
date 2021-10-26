@@ -11,12 +11,16 @@ public class Manager implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column
     private String email;
+    @Column
+    private String firstName;
+    @Column
+    private String lastName;
     @Column
     private String password;
 
@@ -33,11 +37,38 @@ public class Manager implements Serializable {
         this.email = email;
     }
 
+    public Manager(String username, String phoneNumber, String email, String password, String firstName, String lastName) {
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+
     public Manager(String username, String phoneNumber, String email, String password) {
         this.username = username;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getPassword() {

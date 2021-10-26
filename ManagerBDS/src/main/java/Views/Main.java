@@ -19,7 +19,6 @@ public class Main {
         BaseService persistedForInRentService = new PersistedForInRentServiceImp(managerService);
         PersistedService persistedService = new PersistedServiceImp();
         Scanner sc = new Scanner(System.in);
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("default");
         int choose;
         boolean isLogged = false;
 
@@ -37,26 +36,26 @@ public class Main {
             switch (choose) {
                 case 1:
                     System.out.println("------------Add Manager------------");
-                    managerService.handleAdd(factory);
+                    managerService.handleAdd();
                     break;
                 case 2:
                     System.out.println("------------Add Persisted Sale------------");
-                    persistedSaleService.handleAdd(factory);
+                    persistedSaleService.handleAdd();
                     break;
                 case 3:
                     System.out.println("------------Add Persisted Rent------------");
-                    persistedRentService.handleAdd(factory);
+                    persistedRentService.handleAdd();
                     break;
                 case 4:
                     System.out.println("------------Add Persisted For In Rent------------");
-                    persistedForInRentService.handleAdd(factory);
+                    persistedForInRentService.handleAdd();
                     break;
                 case 5:
                     System.out.println("Enter username : ");
                     String username = sc.nextLine();
                     System.out.println("Enter password : ");
                     String password = sc.nextLine();
-                    Manager manager = managerService.handleLogin(username, password, factory);
+                    Manager manager = managerService.handleLogin(username, password);
                     if (manager == null)
                         System.out.println("Login fail");
                     else
@@ -69,11 +68,11 @@ public class Main {
         System.out.println("Login successful");
         System.out.println("======================");
         System.out.println("Persisted Properties");
-        persistedService.showAll(factory);
+        persistedService.showAll();
         System.out.println("Persisted property Managers");
-        persistedService.showAllAllocation(factory);
+        persistedService.showAllAllocation();
         System.out.println("Persisted Property Allocations");
-        managerService.showAll(factory);
+        managerService.showAll();
 
         do {
             System.out.println("\n****************************");
@@ -88,13 +87,13 @@ public class Main {
             sc.nextLine();
             switch (choose) {
                 case 1:
-                    persistedService.getByAddress(factory);
+                    persistedService.getByAddress();
                     break;
                 case 2:
-                    managerService.showInfoByUsername(factory);
+                    managerService.showInfoByUsername();
                     break;
                 case 3:
-                    persistedService.getByAllocation(factory);
+                    persistedService.getByAllocation();
                     break;
                 default:
                     System.exit(0);

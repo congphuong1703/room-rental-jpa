@@ -3,19 +3,18 @@ package Services;
 
 import Entities.Persisted;
 
-import javax.persistence.EntityManagerFactory;
 import java.util.List;
 
 public interface PersistedService {
 
-    void showAllAllocation(EntityManagerFactory factory);
+    void showAllAllocation();
 
-    void getByAddress(EntityManagerFactory factory);
+    void getByAddress();
 
-    void showAll(EntityManagerFactory factory);
+    void showAll();
 
-    List<Persisted> getAll(EntityManagerFactory factory);
+    List<Persisted> getAll();
 
-    void getByAllocation(EntityManagerFactory factory);
+    void getByAllocation();
 
 }

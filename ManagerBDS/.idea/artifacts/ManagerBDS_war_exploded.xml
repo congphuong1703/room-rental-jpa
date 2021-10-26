@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ManagerBDS:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/ManagerBDS_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="ManagerBDS/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="ManagerBDS" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

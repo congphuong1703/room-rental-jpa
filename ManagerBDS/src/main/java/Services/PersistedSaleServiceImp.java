@@ -3,51 +3,71 @@ package Services;
 import Entities.Manager;
 import Entities.Persisted;
 import Entities.PersistedSale;
+import Entities.PersistedSale;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
     private Response response = new Response();
     private ManagerService managerService;
+    private EntityManager entityManager;
 
     public PersistedSaleServiceImp(ManagerService managerService) {
         this.managerService = managerService;
+        this.entityManager = HibernateHelper.getEntityManager();
     }
 
     @Override
-    public void save(PersistedSale object, EntityManagerFactory entityManagerFactory) {
-        EntityManager manager = entityManagerFactory.createEntityManager();
+    public void save(PersistedSale object ) {
         try {
-            manager.getTransaction().begin();
-            manager.persist(object);
-            manager.getTransaction().commit();
+            entityManager.getTransaction().begin();
+            entityManager.persist(object);
+            entityManager.getTransaction().commit();
             response.onSuccessAddRent();
         } catch (Exception e) {
             response.onFailAddRent(e.getMessage());
         } finally {
-            manager.close();
+            entityManager.close();
         }
     }
 
     @Override
-    public void handleAdd(EntityManagerFactory entityManagerFactory) {
+    public void handleAdd() {
         Scanner sc = new Scanner(System.in);
         Persisted persisted = new Persisted();
         persisted.add(sc);
         double area = this.inputArea(sc);
         System.out.println("Enter username : ");
         String username = sc.nextLine();
-        Manager manager = managerService.getByUsername(username, entityManagerFactory);
+        Manager manager = managerService.getByUsername(username);
         if (manager == null) {
             System.out.println("Not found username");
             return;
         }
         PersistedSale sale = new PersistedSale(persisted.getId(),
                 persisted.getAddress(), persisted.getDescription(), persisted.getNumberOfBed(), persisted.getPrice(), manager, area);
-        this.save(sale, entityManagerFactory);
+        this.save(sale);
         System.out.println(sale.toString());
+    }
+
+    @Override
+    public List<PersistedSale> getAll() {
+        List<PersistedSale> persistedSales = new ArrayList<>();
+        try {
+            persistedSales = entityManager.createQuery("Select r from PersistedSale r", PersistedSale.class).getResultList();
+        } catch (Exception e) {
+            Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            entityManager.close();
+        }
+        return persistedSales;
     }
 
     private double inputArea(Scanner sc) {

@@ -2,6 +2,7 @@ package Services;
 
 import Entities.*;
 import Entities.Persisted;
+import org.hibernate.Session;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,9 +15,14 @@ import java.util.logging.Logger;
 
 public class PersistedServiceImp implements PersistedService {
 
+    private EntityManager entityManager;
+    public PersistedServiceImp() {
+        this.entityManager = HibernateHelper.getEntityManager();
+    }
+
     @Override
-    public void showAll(EntityManagerFactory factory) {
-        List<Persisted> persistedSales = this.getAll(factory);
+    public void showAll() {
+        List<Persisted> persistedSales = this.getAll();
         for (Persisted persisted : persistedSales) {
             System.out.println("\n");
             this.showInfo(persisted);
@@ -25,29 +31,29 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public List<Persisted> getAll(EntityManagerFactory factory) {
-        EntityManager manager = factory.createEntityManager();
+    public List<Persisted> getAll() {
+
         List<Persisted> persistedList = new ArrayList<>();
         try {
-            persistedList = manager.createQuery("Select r from Persisted r", Persisted.class).getResultList();
+            persistedList = entityManager.createQuery("Select r from Persisted r", Persisted.class).getResultList();
         } catch (Exception e) {
             Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            manager.close();
+            entityManager.close();
         }
         return persistedList;
     }
 
     @Override
-    public void getByAllocation(EntityManagerFactory factory) {
-        EntityManager manager = factory.createEntityManager();
+    public void getByAllocation() {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name : ");
         String username = sc.nextLine();
         System.out.println("Allocation ID : ");
         Long allocationId = sc.nextLong();
         sc.nextLine();
-        Query query = manager.createQuery("SELECT r FROM Persisted r where  r.id = :id and r.manager.username = :username", Persisted.class);
+        Query query = entityManager.createQuery("SELECT r FROM Persisted r where  r.id = :id and r.manager.username = :username", Persisted.class);
         query.setParameter("username", username);
         query.setParameter("id", allocationId);
 
@@ -61,7 +67,7 @@ public class PersistedServiceImp implements PersistedService {
         } catch (Exception ex) {
             Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            manager.close();
+            entityManager.close();
         }
 
         for (Persisted persisted : persistedList) {
@@ -71,15 +77,15 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public void showAllAllocation(EntityManagerFactory factory) {
-        EntityManager manager = factory.createEntityManager();
+    public void showAllAllocation() {
+
         List<Persisted> persistedList = new ArrayList<>();
         try {
-            persistedList = manager.createQuery("Select r from Persisted r", Persisted.class).getResultList();
+            persistedList = entityManager.createQuery("Select r from Persisted r", Persisted.class).getResultList();
         } catch (Exception e) {
             Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            manager.close();
+            entityManager.close();
         }
         for (Persisted persisted : persistedList) {
             System.out.println("\n");
@@ -88,12 +94,12 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
-    public void getByAddress(EntityManagerFactory factory) {
-        EntityManager manager = factory.createEntityManager();
+    public void getByAddress() {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter address : ");
         String address = sc.nextLine();
-        Query query = manager.createQuery("SELECT r FROM Persisted r where r.address = :address", Persisted.class);
+        Query query = entityManager.createQuery("SELECT r FROM Persisted r where r.address = :address", Persisted.class);
         List<Persisted> persistedList = query.setParameter("address", address).getResultList();
 
         try {
@@ -104,7 +110,7 @@ public class PersistedServiceImp implements PersistedService {
         } catch (Exception ex) {
             Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            manager.close();
+            entityManager.close();
         }
     }
 

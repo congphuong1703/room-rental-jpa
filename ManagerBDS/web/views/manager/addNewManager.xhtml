@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <h:form id="formNewManager">
+            <h:messages/>
+            <div>Create a property manager</div>
+            <p>
+                <h:outputLabel for="username">Username:</h:outputLabel>
+                <h:inputText id="username" label="Username"
+                             value="#{managerController.manager.username}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="firstName">First Name:</h:outputLabel>
+                <h:inputText id="firstName" label="First Name"
+                               value="#{managerController.manager.firstName}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="lastName">Last Name:</h:outputLabel>
+                <h:inputText id="lastName" label="Last Name"
+                             value="#{managerController.manager.lastName}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="phone">Phone:</h:outputLabel>
+                <h:inputText id="phone" label="Phone"
+                             value="#{managerController.manager.phoneNumber}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="email">Email:</h:outputLabel>
+                <h:inputText id="email" label="Email"
+                             value="#{managerController.manager.email}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="password">Password:</h:outputLabel>
+                <h:inputSecret id="password" label="Password"
+                             value="#{managerController.manager.password}" required="true"/>
+            </p>
+            <h:commandButton id="buttonCreate"
+                             action="#{managerController.addNewManager}" value="Create"/>
+        </h:form>
+        <br/>
+        <div>
+            <h:link value="List property managers" outcome="/views/manager/listManagers.xhtml"/> |
+            <h:link value="Search for property manager" outcome="/views/manager/searchManager.xhtml"/> |
+        </div>
+    </ui:define>
+</ui:composition>
+</html>
