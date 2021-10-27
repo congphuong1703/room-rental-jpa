@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(name = "inRentController", eager = true)
 @RequestScoped
 public class InRentController {
 
@@ -38,6 +38,25 @@ public class InRentController {
             showMessage("Not found property by id : " + persisted.getId());
         }
 
+        return "views/inrent/listInRents";
+    }
+
+
+    public String searchInRent(Long id) {
+        //query get property by id
+        Persisted persisted = persistedService.getById(id);
+        //check null && type is persistedsale
+        if (persisted != null && persisted instanceof PersistedForInRent) {
+            //cast to persisted from persistedsale
+            PersistedForInRent inRent = (PersistedForInRent) persisted;
+            //constructor new array with element is new sale property
+            persistedForInRents = new ArrayList<PersistedForInRent>() {{
+                add(inRent);
+            }};
+        } else {
+            showMessage("Not found InRent property by id : " + id);
+        }
+        //return view
         return "views/inrent/listInRents";
     }
 

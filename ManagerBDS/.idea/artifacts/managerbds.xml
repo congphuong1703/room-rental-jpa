@@ -1,13 +1,13 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" build-on-make="true" name="ManagerBDS_war_exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/ManagerBDS_war_exploded</output-path>
+  <artifact type="exploded-war" name="managerbds">
+    <output-path>$PROJECT_DIR$/out/artifacts/managerbds</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-8.0.11" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.11" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="ManagerBDS/web/Web" />
     </root>
   </artifact>
 </component>

@@ -6,7 +6,7 @@
     <ui:define name="yield">
         <f:view>
             <h:form id="formSearch">
-                <div class="title">Searh a Rental property</div>
+                <div class="title">Searh a InRental property</div>
                 <div>
                     <p>
                         <h:outputLabel for="propertyId">Property ID:</h:outputLabel>
@@ -14,12 +14,12 @@
                                      value="#{rentController.rent.id}" required="true"/>
                     </p>
                     <h:commandButton id="buttonSearch"
-                                     action="#{rentController.searchRent(rentController.rent.id)}" value="Search"/>
+                                     action="#{inRentController.searchInRent(inRentController.rent.id)}" value="Search"/>
                 </div>
             </h:form>
             <br/>
             <div>
-                <h:link value="the list of rent properties" outcome="/views/ren/listRents.xhtml"/> |
+                <h:link value="the list of InRent properties" outcome="/views/inRent/listInRents.xhtml"/> |
                 <h:link value="Main page" outcome="/views/index.xhtml"/> |
             </div>
         </f:view>

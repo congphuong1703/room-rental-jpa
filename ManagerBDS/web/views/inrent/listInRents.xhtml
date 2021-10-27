@@ -1,65 +1,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="/views/MasterPage.xhtml">
     <ui:define name="yield">
         <f:view>
-            <div class="title">The current property manager</div>
-            <h:dataTable var="manager" value="#{managerController.managers}"
+            <div class="title">The current InRent Property</div>
+            <h:dataTable var="inRent" value="#{inRentController.persistedForInRents}"
                          id="table">
                 <h:column>
                     <f:facet name="header">
                         ID
                     </f:facet>
-                    #{manager.id}
+                    #{inRent.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Username
+                        Type
                     </f:facet>
-                    #{manager.username}
+                    #{inRent.propertyType}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        First Name
+                        Location
                     </f:facet>
-                    #{manager.firstName}
+                    #{inRent.streetNumber}, #{inRent.streetName}, #{inRent.city}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Last Name
+                        Tenant
                     </f:facet>
-                    #{manager.lastName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Phone Number
-                    </f:facet>
-                    #{manager.phoneNumber}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Email
-                    </f:facet>
-                    #{manager.email}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Action
-                    </f:facet>
-                    <h:button id="managerDetails" outcome="/views/managers/searchManager"
-                              value="View Details">
-                        <f:param name="username" value="#{manager.username}"/>
-                    </h:button>
+                    #{inRent.tenantName}
                 </h:column>
             </h:dataTable>
+            <p>Total Rent Propertyies : #{inRentController.persistedForInRents.size}</p>
+            <br/>
+            <div>
+                <h:link value="Create a rental property" outcome="/views/rent/addNewInRent.xhtml"/> |
+                <h:link value="Main page" outcome="/views/index.xhtml"/> |
+            </div>
         </f:view>
-        <br/>
-        <div>
-            <h:link value="Create a property manager" outcome="/views/manager/addNewManager.xhtml"/> |
-            <h:link value="Search for property manager" outcome="/views/manager/searchManager.xhtml"/> |
-        </div>
     </ui:define>
 </ui:composition>
 </html>

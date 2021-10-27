@@ -3,10 +3,12 @@ package Controllers;
 import Entities.Manager;
 import Services.*;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,11 +18,18 @@ import java.util.List;
 @ManagedBean
 @RequestScoped
 public class ManagerController implements Serializable {
+    private static final long serialVersionUID = 5443351151396868724L;
 
-    private Manager manager = new Manager();
+    public Manager manager;
 
-    private List<Manager> managers = new ArrayList<>();
-    private ManagerService managerService = new ManagerServiceImp();
+    public List<Manager> managers = new ArrayList<>();
+    public ManagerService managerService = new ManagerServiceImp();
+
+    @PostConstruct
+    public void init() {
+        manager = new Manager();
+        managers = managerService.getAll();
+    }
 
     public String listManagers() {
         managers = managerService.getAll();

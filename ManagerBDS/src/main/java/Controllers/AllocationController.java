@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@ManagedBean
+@ManagedBean(name = "allocationController", eager = true)
 @RequestScoped
 public class AllocationController {
 
@@ -75,4 +75,35 @@ public class AllocationController {
         return "views/allocation/listAllocations";
     }
 
+    public List<Allocation> getAllocationList() {
+        return allocationList;
+    }
+
+    public void setAllocationList(List<Allocation> allocationList) {
+        this.allocationList = allocationList;
+    }
+
+    public Persisted getPersisted() {
+        return persisted;
+    }
+
+    public void setPersisted(Persisted persisted) {
+        this.persisted = persisted;
+    }
+
+    public Allocation getAllocation() {
+        return allocation;
+    }
+
+    public void setAllocation(Allocation allocation) {
+        this.allocation = allocation;
+    }
+
+    public PersistedService getPersistedService() {
+        return persistedService;
+    }
+
+    public void setPersistedService(PersistedService persistedService) {
+        this.persistedService = persistedService;
+    }
 }

@@ -1,64 +1,52 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="/views/MasterPage.xhtml">
     <ui:define name="yield">
         <f:view>
-            <div class="title">The current property manager</div>
-            <h:dataTable var="manager" value="#{managerController.managers}"
+            <div class="title">The current allocation property</div>
+            <h:dataTable var="allocation" value="#{allocationController.allocationList}"
                          id="table">
                 <h:column>
                     <f:facet name="header">
                         ID
                     </f:facet>
-                    #{manager.id}
+                    #{allocation.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Username
+                        Property Manager
                     </f:facet>
-                    #{manager.username}
+                    #{allocation.manager.firstName}  #{allocation.manager.lastName}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        First Name
+                        Property
                     </f:facet>
-                    #{manager.firstName}
+                    #{allocation.streetNumber}  #{allocation.streetName} #{allocation.city}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Last Name
+                        Time Created
                     </f:facet>
-                    #{manager.lastName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Phone Number
-                    </f:facet>
-                    #{manager.phoneNumber}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Email
-                    </f:facet>
-                    #{manager.email}
+                    #{allocation.timCreated}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         Action
                     </f:facet>
-                    <h:button id="managerDetails" outcome="/views/managers/searchManager"
-                              value="View Details">
-                        <f:param name="username" value="#{manager.username}"/>
+                    <h:button id="managerDetails" outcome="/views/allocation/delete"
+                              value="Delete">
+                        <f:param name="id" value="#{allocation.id}"/>
                     </h:button>
                 </h:column>
             </h:dataTable>
         </f:view>
         <br/>
         <div>
-            <h:link value="Create a property manager" outcome="/views/manager/addNewManager.xhtml"/> |
-            <h:link value="Search for property manager" outcome="/views/manager/searchManager.xhtml"/> |
+            <h:link value="Create a allocation property" outcome="/views/allocation/addNewAllocation.xhtml"/> |
+            <h:link value="Search for allocation property" outcome="/views/allocation/searchAllocation.xhtml"/> |
         </div>
     </ui:define>
 </ui:composition>

@@ -1,11 +1,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 <ui:composition template="/views/MasterPage.xhtml">
     <ui:define name="yield">
         <f:view>
-            <div class="title">The current property manager</div>
+            <div class="title">The current Rent Property</div>
             <h:dataTable var="rent" value="#{rentController.rents}"
                          id="table">
                 <h:column>
@@ -39,7 +39,7 @@
             <p>Total Rent Propertyies : #{rentController.rents.size}</p>
             <br/>
             <div>
-                <h:link value="Create a new rent property" outcome="/views/manager/addNewManager.xhtml"/> |
+                <h:link value="Create a new rent property" outcome="/views/manager/addNewRent.xhtml"/> |
                 <h:link value="Main page" outcome="/views/index.xhtml"/> |
             </div>
         </f:view>
