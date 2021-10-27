@@ -6,58 +6,40 @@
     <ui:define name="yield">
         <f:view>
             <div class="title">The current property manager</div>
-            <h:dataTable var="manager" value="#{managerController.managers}"
+            <h:dataTable var="sale" value="#{saleController.sales}"
                          id="table">
                 <h:column>
                     <f:facet name="header">
                         ID
                     </f:facet>
-                    #{manager.id}
+                    #{sale.id}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        Username
+                        Type
                     </f:facet>
-                    #{manager.username}
+                    #{sale.propertyType}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
-                        First Name
+                        Location
                     </f:facet>
-                    #{manager.firstName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Last Name
-                    </f:facet>
-                    #{manager.lastName}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Phone Number
-                    </f:facet>
-                    #{manager.phoneNumber}
-                </h:column>
-                <h:column>
-                    <f:facet name="header">
-                        Email
-                    </f:facet>
-                    #{manager.email}
+                    #{sale.streetNumber}  #{sale.streetName} #{sale.city}
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         Action
                     </f:facet>
-                    <h:button id="managerDetails" outcome="/views/manager/searchManager"
+                    <h:button id="saleDetails" outcome="/views/sale/detailSale"
                               value="View Details">
-                        <f:param name="username" value="#{manager.username}"/>
+                        <f:param name="id" value="#{sale.id}"/>
                     </h:button>
                 </h:column>
             </h:dataTable>
-            <p>Total Property Managers : #{managerController.managers.size}</p>
+            <p>Total Sale Propertyies : #{saleController.sales.size}</p>
             <br/>
             <div>
-                <h:link value="Create a property manager" outcome="/views/manager/addNewManager.xhtml"/> |
+                <h:link value="Create a new sale property" outcome="/views/manager/addNewManager.xhtml"/> |
                 <h:link value="Main page" outcome="/views/index.xhtml"/> |
             </div>
         </f:view>

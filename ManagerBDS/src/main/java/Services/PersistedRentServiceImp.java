@@ -7,17 +7,16 @@ import Entities.Manager;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 import java.util.Scanner;
 
 public class PersistedRentServiceImp implements BaseService<PersistedRent> {
 
     private Response response = new Response();
-    private ManagerService managerService;
     private EntityManagerFactory factory;
 
-    public PersistedRentServiceImp(ManagerService managerService) {
+    public PersistedRentServiceImp() {
         factory = Persistence.createEntityManagerFactory("default");
-        this.managerService = managerService;
     }
 
     @Override
@@ -36,7 +35,7 @@ public class PersistedRentServiceImp implements BaseService<PersistedRent> {
     }
     @Override
     public void handleAdd() {
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         Persisted persisted = new Persisted();
         persisted.add(sc);
         System.out.println("Enter timer rent : ");
@@ -49,9 +48,14 @@ public class PersistedRentServiceImp implements BaseService<PersistedRent> {
             return;
         }
         PersistedRent rent = new PersistedRent(persisted.getId(),
-                persisted.getAddress(), persisted.getDescription(), persisted.getNumberOfBed(), persisted.getPrice(), manager, timerRent);
+                 persisted.getDescription(), persisted.getNumberOfBed(), persisted.getPrice(), manager, timerRent);
         this.save(rent);
-        System.out.println(rent.toString());
+        System.out.println(rent.toString());*/
+    }
+
+    @Override
+    public List<PersistedRent> getAll() {
+        return null;
     }
 
 }

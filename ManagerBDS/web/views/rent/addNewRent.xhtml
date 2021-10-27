@@ -1,0 +1,78 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <h:form id="formNewRent">
+            <div>Provide the following information for a Rental Property</div>
+            <p>
+                <h:outputLabel for="type">Property Type:</h:outputLabel>
+                <h:inputText id="type" label="type"
+                             value="#{rentController.rent.propertyType}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="bedRooms">No. of Bedrooms:</h:outputLabel>
+                <h:inputText id="bedRooms" label="bedRooms"
+                             value="#{rentController.rent.numberOfBed}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="bathRooms">No. of Bathrooms:</h:outputLabel>
+                <h:inputText id="bathRooms" label="bathRooms"
+                             value="#{rentController.rent.numberOfBathRooms}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="description">Property Description:</h:outputLabel>
+                <h:inputTextarea id="description" label="description"
+                                 value="#{rentController.rent.description}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="streetNumber">Street Number:</h:outputLabel>
+                <h:inputText id="streetNumber" label="streetNumber"
+                             value="#{rentController.rent.streetNumber}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="streetName">Street Name:</h:outputLabel>
+                <h:inputSecret id="streetName" label="streetName"
+                               value="#{rentController.rent.streetName}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="city">City:</h:outputLabel>
+                <h:inputSecret id="city" label="city"
+                               value="#{rentController.rent.city}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="state">State:</h:outputLabel>
+                <h:inputSecret id="state" label="state"
+                               value="#{rentController.rent.state}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="postCode">Post Code:</h:outputLabel>
+                <h:inputSecret id="postCode" label="postCode"
+                               value="#{rentController.rent.postCode}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="country">Country:</h:outputLabel>
+                <h:inputSecret id="country" label="country"
+                               value="#{rentController.rent.country}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="cost">Rent cost:</h:outputLabel>
+                <h:inputSecret id="cost" label="cost"
+                               value="#{rentController.rent.rentCost}" required="true"/>
+            </p>
+            <p>
+                <h:outputLabel for="funished">Funished:</h:outputLabel>
+                <h:selectBooleanCheckbox value="#{rentController.rent.isFurnished}" id="funished"/>
+            </p>
+            <h:commandButton id="buttonCreate"
+                             action="#{rentController.addNewRent}" value="Create"/>
+        </h:form>
+        <br/>
+        <div>
+            <h:link value="List of rent properties" outcome="/views/rent/listRents.xhtml"/> |
+            <h:link value="Main Page" outcome="/views/index.xhtml"/> |
+        </div>
+    </ui:define>
+</ui:composition>
+</html>

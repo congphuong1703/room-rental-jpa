@@ -7,34 +7,60 @@ import javax.persistence.*;
 @Table(name = "persisted_rent")
 public class PersistedRent extends Persisted {
 
-    @Column(name = "timer_rent")
-    private String timerRent;
+    @Column
+    private double rentCost;
 
+    @Column
+    private boolean isFurnished;
 
-    public PersistedRent(String timerRent) {
-        this.timerRent = timerRent;
+    public PersistedRent(Persisted persisted) {
+        this.description = persisted.getDescription();
+        this.numberOfBed = persisted.getNumberOfBed();
+        this.propertyType = persisted.getPropertyType();
+        this.manager = persisted.getManager();
+        this.state = persisted.getState();
+        this.postCode = persisted.getPostCode();
+        this.city = persisted.getCity();
+        this.numberOfBathRooms = persisted.getNumberOfBathRooms();
+        this.streetName = persisted.getStreetName();
+        this.country = persisted.getCountry();
+        this.streetNumber = persisted.getStreetNumber();
     }
 
-    public PersistedRent(Long id, String address, String description, int numberOfBed, double price, Manager manager, String timerRent) {
-        super(id, address, description, numberOfBed, price, manager);
-        this.timerRent = timerRent;
+    public PersistedRent(Persisted persisted, double rentCost, boolean isFurnished) {
+        this.description = persisted.getDescription();
+        this.numberOfBed = persisted.getNumberOfBed();
+        this.propertyType = persisted.getPropertyType();
+        this.manager = persisted.getManager();
+        this.state = persisted.getState();
+        this.postCode = persisted.getPostCode();
+        this.city = persisted.getCity();
+        this.numberOfBathRooms = persisted.getNumberOfBathRooms();
+        this.streetName = persisted.getStreetName();
+        this.country = persisted.getCountry();
+        this.streetNumber = persisted.getStreetNumber();
+        this.rentCost = rentCost;
+        this.isFurnished = isFurnished;
     }
 
     public PersistedRent() {
     }
 
-    public String getTimerRent() {
-        return timerRent;
+
+    public boolean isFurnished() {
+        return isFurnished;
     }
 
-    public void setTimerRent(String timerRent) {
-        this.timerRent = timerRent;
+    public void setFurnished(boolean furnished) {
+        isFurnished = furnished;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "Rental Price    : $" + this.getPrice() + " per week\n"+
-                "Timer rent   : " + this.getTimerRent();
+    public double getRentCost() {
+        return rentCost;
     }
+
+    public void setRentCost(double rentCost) {
+        this.rentCost = rentCost;
+    }
+
 }

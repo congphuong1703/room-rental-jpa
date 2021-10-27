@@ -48,19 +48,18 @@
                     <f:facet name="header">
                         Action
                     </f:facet>
-                    <h:button id="managerDetails" outcome="/views/manager/searchManager"
+                    <h:button id="managerDetails" outcome="/views/managers/searchManager"
                               value="View Details">
                         <f:param name="username" value="#{manager.username}"/>
                     </h:button>
                 </h:column>
             </h:dataTable>
-            <p>Total Property Managers : #{managerController.managers.size}</p>
-            <br/>
-            <div>
-                <h:link value="Create a property manager" outcome="/views/manager/addNewManager.xhtml"/> |
-                <h:link value="Main page" outcome="/views/index.xhtml"/> |
-            </div>
         </f:view>
+        <br/>
+        <div>
+            <h:link value="Create a property manager" outcome="/views/manager/addNewManager.xhtml"/> |
+            <h:link value="Search for property manager" outcome="/views/manager/searchManager.xhtml"/> |
+        </div>
     </ui:define>
 </ui:composition>
 </html>

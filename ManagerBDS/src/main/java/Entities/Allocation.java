@@ -1,22 +1,27 @@
 package Entities;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "persisted_for_in_rent")
-@DiscriminatorColumn(name = "in_rent")
-public class PersistedForInRent extends Persisted {
+@Table(name = "allocation")
+@DiscriminatorColumn(name = "allocate_persist")
+public class Allocation extends Persisted {
 
-    @Column(name = "timer_rent")
-    private String timerRent;
+    @Column
+    protected LocalDate timCreated;
 
-    @Column(name = "tenant_name")
-    private String tenantName;
-
-    public PersistedForInRent() {
+    public Allocation(LocalDate timCreated) {
+        this.timCreated = timCreated;
     }
 
-    public PersistedForInRent(Persisted persisted) {
+    public Allocation() {
+    }
+
+    public Allocation(Persisted persisted) {
         this.description = persisted.getDescription();
         this.numberOfBed = persisted.getNumberOfBed();
         this.propertyType = persisted.getPropertyType();
@@ -30,7 +35,7 @@ public class PersistedForInRent extends Persisted {
         this.streetNumber = persisted.getStreetNumber();
     }
 
-    public PersistedForInRent(Persisted persisted, String tenantName) {
+    public Allocation(Persisted persisted, LocalDate timCreated) {
         this.description = persisted.getDescription();
         this.numberOfBed = persisted.getNumberOfBed();
         this.propertyType = persisted.getPropertyType();
@@ -42,27 +47,14 @@ public class PersistedForInRent extends Persisted {
         this.streetName = persisted.getStreetName();
         this.country = persisted.getCountry();
         this.streetNumber = persisted.getStreetNumber();
-        this.tenantName = tenantName;
+        this.timCreated = timCreated;
     }
 
-    public PersistedForInRent(String timerRent, String tenantName) {
-        this.timerRent = timerRent;
-        this.tenantName = tenantName;
+    public LocalDate getTimCreated() {
+        return timCreated;
     }
 
-    public String getTimerRent() {
-        return timerRent;
-    }
-
-    public void setTimerRent(String timerRent) {
-        this.timerRent = timerRent;
-    }
-
-    public String getTenantName() {
-        return tenantName;
-    }
-
-    public void setTenantName(String tenantName) {
-        this.tenantName = tenantName;
+    public void setTimCreated(LocalDate timCreated) {
+        this.timCreated = timCreated;
     }
 }

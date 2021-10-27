@@ -1,0 +1,47 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <f:view>
+            <div class="title">The Rental Property of ID: #{rentController.rent.id}</div>
+            <br/>
+            <p>
+                <h:outputLabel>Property Details:</h:outputLabel>
+                <h:outputLabel>#{rentController.rent.propertyType}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>No. of Bedrooms:</h:outputLabel>
+                <h:outputLabel>#{rentController.rent.numberOfBed}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>No. of Bathrooms:</h:outputLabel>
+                <h:outputLabel>#{rentController.rent.numberOfBathRooms}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Address:</h:outputLabel>
+                <h:outputLabel>#{rentController.rent.streetNumber} #{rentController.rent.streetName}, #{rentController.rent.state}, #{rentController.rent.city}, #{rentController.rent.country}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Weekly Rent:</h:outputLabel>
+                <h:outputLabel>$#{rentController.rent.rentCost}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Furnished:</h:outputLabel>
+                <h:outputLabel>$#{rentController.rent.furnished}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Property Description:</h:outputLabel>
+                <h:outputLabel>#{rentController.rent.description}</h:outputLabel>
+            </p>
+            <br/>
+            <div>
+                <h:link value="Create a rental property" outcome="/views/rent/addNewSale.xhtml"/> |
+                <h:link value="Main page" outcome="/views/index.xhtml"/> |
+            </div>
+        </f:view>
+
+    </ui:define>
+</ui:composition>
+</html>

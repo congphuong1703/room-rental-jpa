@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <f:view>
+            <h:form id="formSearch">
+                <div class="title">Searh a sale property</div>
+                <div>
+                    <p>
+                        <h:outputLabel for="propertyId">Property ID:</h:outputLabel>
+                        <h:inputText id="propertyId" label="propertyId"
+                                     value="#{saleController.sale.id}" required="true"/>
+                    </p>
+                    <h:commandButton id="buttonSearch"
+                                     action="#{saleController.searchSale(saleController.sale.id)}" value="Search"/>
+                </div>
+            </h:form>
+            <br/>
+            <div>
+                <h:link value="List all sale properties" outcome="/views/sale/listSales.xhtml"/> |
+                <h:link value="Main page" outcome="/views/index.xhtml"/> |
+            </div>
+        </f:view>
+    </ui:define>
+</ui:composition>
+</html>

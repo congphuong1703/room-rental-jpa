@@ -31,6 +31,13 @@ public class PersistedServiceImp implements PersistedService {
     }
 
     @Override
+    public void delete(Long id) {
+        EntityManager manager = factory.createEntityManager();
+        Persisted persisted = this.getById(id);
+        manager.remove(persisted);
+    }
+
+    @Override
     public List<Persisted> getAll() {
         EntityManager manager = factory.createEntityManager();
         List<Persisted> persistedList = new ArrayList<>();
@@ -46,7 +53,7 @@ public class PersistedServiceImp implements PersistedService {
 
     @Override
     public void getByAllocation() {
-        EntityManager manager = factory.createEntityManager();
+      /*  EntityManager manager = factory.createEntityManager();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter name : ");
         String username = sc.nextLine();
@@ -73,12 +80,12 @@ public class PersistedServiceImp implements PersistedService {
         for (Persisted persisted : persistedList) {
             System.out.println("\n");
             System.out.println("Manger Name :  " + persisted.getUser().getUsername() + " <==> Property Location : " + persisted.getAddress());
-        }
+        }*/
     }
 
     @Override
     public void showAllAllocation() {
-        EntityManager manager = factory.createEntityManager();
+       /* EntityManager manager = factory.createEntityManager();
         List<Persisted> persistedList = new ArrayList<>();
         try {
             persistedList = manager.createQuery("Select r from Persisted r", Persisted.class).getResultList();
@@ -90,12 +97,28 @@ public class PersistedServiceImp implements PersistedService {
         for (Persisted persisted : persistedList) {
             System.out.println("\n");
             System.out.println("Manger Name :  " + persisted.getUser().getUsername() + " <==> Property Location : " + persisted.getAddress());
+        }*/
+    }
+
+    @Override
+    public Persisted getById(Long id) {
+        EntityManager manager = factory.createEntityManager();
+        List<Persisted> persistedList = new ArrayList<>();
+        try {
+            persistedList = manager.createQuery("Select r from Persisted r where r.id =: id", Persisted.class).setParameter("id", id).getResultList();
+
+        } catch (Exception e) {
+            Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            manager.close();
         }
+
+        return persistedList.isEmpty() ? null : persistedList.get(0);
     }
 
     @Override
     public void getByAddress() {
-        EntityManager manager = factory.createEntityManager();
+        /*EntityManager manager = factory.createEntityManager();
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter address : ");
         String address = sc.nextLine();
@@ -111,7 +134,7 @@ public class PersistedServiceImp implements PersistedService {
             Logger.getLogger(Persisted.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             manager.close();
-        }
+        }*/
     }
 
     private void showInfo(Persisted persisted) {

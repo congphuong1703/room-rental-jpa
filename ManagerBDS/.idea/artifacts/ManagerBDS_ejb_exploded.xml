@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ejb" name="ManagerBDS:ejb exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/ManagerBDS_ejb_exploded</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="ManagerBDS/ejb/EJB" />
-      <element id="javaee-facet-classes" facet="ManagerBDS/ejb/EJB" />
-    </root>
-  </artifact>
-</component>

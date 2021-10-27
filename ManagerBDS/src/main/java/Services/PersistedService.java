@@ -9,9 +9,13 @@ public interface PersistedService {
 
     void showAllAllocation();
 
+    Persisted getById(Long id);
+
     void getByAddress();
 
     void showAll();
+
+    void delete(Long id);
 
     List<Persisted> getAll();
 

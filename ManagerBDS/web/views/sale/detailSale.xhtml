@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <f:view>
+            <div class="title">The sale property of ID: #{saleController.sale.id}</div>
+            <br/>
+            <p>
+                <h:outputLabel>Property Details:</h:outputLabel>
+                <h:outputLabel>#{saleController.sale.propertyType}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>No. of Bedrooms:</h:outputLabel>
+                <h:outputLabel>#{saleController.sale.numberOfBed}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>No. of Bathrooms:</h:outputLabel>
+                <h:outputLabel>#{saleController.sale.numberOfBathRooms}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Address:</h:outputLabel>
+                <h:outputLabel>#{saleController.sale.streetNumber} #{saleController.sale.streetName}, #{saleController.sale.state}, #{saleController.sale.city}, #{saleController.sale.country}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Sale Price:</h:outputLabel>
+                <h:outputLabel>$#{saleController.sale.salePrice}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Property Description:</h:outputLabel>
+                <h:outputLabel>#{saleController.sale.description}</h:outputLabel>
+            </p>
+            <br/>
+            <div>
+                <h:link value="Create a sale property" outcome="/views/sale/addNewSale.xhtml"/> |
+                <h:link value="Main page" outcome="/views/index.xhtml"/> |
+            </div>
+        </f:view>
+
+    </ui:define>
+</ui:composition>
+</html>

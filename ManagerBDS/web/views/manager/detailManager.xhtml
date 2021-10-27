@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <f:view>
+            <div class="title">The current property manager of ID : #{managerController.manager.id}</div>
+            <p>
+                <h:outputLabel>Manager Name:</h:outputLabel>
+                <h:outputLabel>#{managerController.manager.firstName} #{managerController.manager.lastName}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Phone number:</h:outputLabel>
+                <h:outputLabel>#{managerController.manager.phoneNumber}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Mobile:</h:outputLabel>
+                <h:outputLabel>#{managerController.manager.mobile}</h:outputLabel>
+            </p>
+            <p>
+                <h:outputLabel>Email address:</h:outputLabel>
+                <h:outputLabel>#{managerController.manager.email}</h:outputLabel>
+            </p>
+            <h3>Property Allocations (0)</h3>
+            <h6>Time Created Location</h6>
+            <br/>
+            <div>
+                <h:link value="Create a new allocation" outcome="/views/allocation/addNewAllocation.xhtml"/> |
+                <h:link value="Main page" outcome="/views/index.xhtml"/> |
+            </div>
+        </f:view>
+    </ui:define>
+</ui:composition>
+</html>

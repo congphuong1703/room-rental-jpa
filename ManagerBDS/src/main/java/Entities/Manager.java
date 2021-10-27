@@ -10,22 +10,24 @@ public class Manager implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
     @Column(name = "username", unique = true)
-    private String username;
+    protected String username;
     @Column(name = "phone_number")
-    private String phoneNumber;
+    protected String phoneNumber;
     @Column
-    private String email;
+    protected String email;
     @Column
-    private String firstName;
+    protected String mobile;
     @Column
-    private String lastName;
+    protected String firstName;
     @Column
-    private String password;
+    protected String lastName;
+    @Column
+    protected String password;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "manager")
-    private Collection<Persisted> persistedCollection;
+    protected Collection<Persisted> persistedCollection;
 
     public Manager() {
     }
@@ -37,13 +39,14 @@ public class Manager implements Serializable {
         this.email = email;
     }
 
-    public Manager(String username, String phoneNumber, String email, String password, String firstName, String lastName) {
+    public Manager(String username, String phoneNumber, String email, String password, String firstName, String lastName, String mobile) {
         this.username = username;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.mobile = mobile;
     }
 
 
@@ -54,6 +57,13 @@ public class Manager implements Serializable {
         this.password = password;
     }
 
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
 
     public String getFirstName() {
         return firstName;

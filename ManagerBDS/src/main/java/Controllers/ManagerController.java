@@ -2,6 +2,7 @@ package Controllers;
 
 import Entities.Manager;
 import Services.*;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
 //Khai báo been
 @ManagedBean
 @RequestScoped
@@ -37,13 +39,18 @@ public class ManagerController implements Serializable {
         return "views/manager/listManagers";
     }
 
-    public String searchManager() throws IOException {
+    public String searchManager(String firstName, String lastName) throws IOException {
         String username = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("username");
         manager = managerService.getByUsername(username);
         managers = new ArrayList<Manager>() {{
             add(manager);
         }};
         return "views/manager/listManagers";
+    }
+
+    private void showMessage(String summary) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(summary));
     }
 
     public Manager getManager() {
@@ -60,11 +67,6 @@ public class ManagerController implements Serializable {
 
     public void setManagers(List<Manager> managers) {
         this.managers = managers;
-    }
-
-    private void showMessage(String summary) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(summary));
     }
 
 }

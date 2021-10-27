@@ -15,7 +15,7 @@ public class Main {
     public static void main(String[] args) {
         ManagerService managerService = new ManagerServiceImp();
         BaseService persistedSaleService = new PersistedSaleServiceImp(managerService);
-        BaseService persistedRentService = new PersistedRentServiceImp(managerService);
+        BaseService persistedRentService = new PersistedRentServiceImp();
         BaseService persistedForInRentService = new PersistedForInRentServiceImp(managerService);
         PersistedService persistedService = new PersistedServiceImp();
         Scanner sc = new Scanner(System.in);

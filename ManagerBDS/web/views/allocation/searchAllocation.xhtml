@@ -1,0 +1,23 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<ui:composition template="/views/MasterPage.xhtml">
+    <ui:define name="yield">
+        <f:view>
+            <h:form id="formSearch">
+                <div class="title">Searh an Allocation</div>
+                <div>
+                    <p>
+                        <h:outputLabel for="saleId">Allocation ID:</h:outputLabel>
+                        <h:inputText id="saleId" label="saleId"
+                                     value="#{allocationController.allocation.id}" required="true"/>
+                    </p>
+                    <h:commandButton id="buttonSearch"
+                                     action="#{allocationController.searchAllocation(allocationController.allocation.id)}" value="Search"/>
+                </div>
+            </h:form>
+        </f:view>
+    </ui:define>
+</ui:composition>
+</html>

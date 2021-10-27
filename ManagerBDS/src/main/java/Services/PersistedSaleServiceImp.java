@@ -7,6 +7,7 @@ import Entities.PersistedSale;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 import java.util.Scanner;
 
 public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
@@ -20,7 +21,7 @@ public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
     }
 
     @Override
-    public void save(PersistedSale object ) {
+    public void save(PersistedSale object) {
         EntityManager manager = factory.createEntityManager();
         try {
             manager.getTransaction().begin();
@@ -36,7 +37,7 @@ public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
 
     @Override
     public void handleAdd() {
-        Scanner sc = new Scanner(System.in);
+      /*  Scanner sc = new Scanner(System.in);
         Persisted persisted = new Persisted();
         persisted.add(sc);
         double area = this.inputArea(sc);
@@ -48,9 +49,15 @@ public class PersistedSaleServiceImp implements BaseService<PersistedSale> {
             return;
         }
         PersistedSale sale = new PersistedSale(persisted.getId(),
-                persisted.getAddress(), persisted.getDescription(), persisted.getNumberOfBed(), persisted.getPrice(), manager, area);
+                 persisted.getDescription(), persisted.getNumberOfBed(), persisted.getPrice(), manager, area);
         this.save(sale);
-        System.out.println(sale.toString());
+        System.out.println(sale.toString());*/
+    }
+
+    // TODO: 10/27/2021
+    @Override
+    public List<PersistedSale> getAll() {
+        return null;
     }
 
     private double inputArea(Scanner sc) {

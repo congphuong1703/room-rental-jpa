@@ -8,32 +8,51 @@ import javax.persistence.*;
 public class PersistedSale extends Persisted {
 
     @Column
-    private double area;
+    private double salePrice;
 
-    public PersistedSale(double area) {
-        this.area = area;
+    public PersistedSale(double salePrice) {
+        this.salePrice = salePrice;
     }
 
     public PersistedSale() {
     }
 
-    public PersistedSale(Long id, String address, String description, int numberOfBed, double price, Manager manager, double area) {
-        super(id, address, description, numberOfBed, price, manager);
-        this.area = area;
+    public PersistedSale(Persisted persisted) {
+        this.description = persisted.getDescription();
+        this.numberOfBed = persisted.getNumberOfBed();
+        this.propertyType = persisted.getPropertyType();
+        this.manager = persisted.getManager();
+        this.state = persisted.getState();
+        this.postCode = persisted.getPostCode();
+        this.city = persisted.getCity();
+        this.numberOfBathRooms = persisted.getNumberOfBathRooms();
+        this.streetName = persisted.getStreetName();
+        this.country = persisted.getCountry();
+        this.streetNumber = persisted.getStreetNumber();
     }
 
-    public double getArea() {
-        return area;
+    public PersistedSale(Persisted persisted,double salePrice) {
+        this.description = persisted.getDescription();
+        this.numberOfBed = persisted.getNumberOfBed();
+        this.propertyType = persisted.getPropertyType();
+        this.manager = persisted.getManager();
+        this.salePrice = salePrice;
+        this.state = persisted.getState();
+        this.postCode = persisted.getPostCode();
+        this.city = persisted.getCity();
+        this.numberOfBathRooms = persisted.getNumberOfBathRooms();
+        this.streetName = persisted.getStreetName();
+        this.country = persisted.getCountry();
+        this.streetNumber = persisted.getStreetNumber();
     }
 
-    public void setArea(double area) {
-        this.area = area;
+
+    public double getSalePrice() {
+        return salePrice;
     }
 
-    @Override
-    public String toString() {
-        return super.toString() +
-                "Sale Price    : $" + this.getPrice() + "\n"+
-                "Area          : " + this.area + "m2";
+    public void setSalePrice(double salePrice) {
+        this.salePrice = salePrice;
     }
+
 }

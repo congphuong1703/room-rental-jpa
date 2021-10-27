@@ -27,11 +27,6 @@
                              value="#{managerController.manager.phoneNumber}" required="true"/>
             </p>
             <p>
-                <h:outputLabel for="mobile">Mobile:</h:outputLabel>
-                <h:inputText id="mobile" label="mobile"
-                             value="#{managerController.manager.mobile}" required="true"/>
-            </p>
-            <p>
                 <h:outputLabel for="email">Email:</h:outputLabel>
                 <h:inputText id="email" label="Email"
                              value="#{managerController.manager.email}" required="true"/>
@@ -46,8 +41,8 @@
         </h:form>
         <br/>
         <div>
-            <h:link value="List all property managers" outcome="/views/manager/listManagers.xhtml"/> |
-            <h:link value="Main page" outcome="/views/index.xhtml"/> |
+            <h:link value="List property managers" outcome="/views/manager/listManagers.xhtml"/> |
+            <h:link value="Search for property manager" outcome="/views/manager/searchManager.xhtml"/> |
         </div>
     </ui:define>
 </ui:composition>
