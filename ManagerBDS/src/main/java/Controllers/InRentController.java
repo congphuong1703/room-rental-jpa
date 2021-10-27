@@ -69,4 +69,6 @@ public class InRentController {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(summary));
     }
+
+
 }
